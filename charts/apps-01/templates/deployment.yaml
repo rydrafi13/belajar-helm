@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  labels:
+    name: {{ .Values.deployment.labels.name }}
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels: 
+      name: {{ .Values.deployment.labels.name }}
+  template:
+    metadata:
+      annotations: 
+        deskripsi: {{ .Values.deployment.annotations.deskripsi }}
+      labels: 
+        name: {{ .Values.deployment.labels.name }}
+    spec:
+      containers:
+        - name: nginx
+          image: "{{ .Values.deployment.image.app }}:{{ .Values.deployment.image.version | default .Chart.AppVersion }}"
+

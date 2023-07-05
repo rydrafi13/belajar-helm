@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  labels: {{- include "labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels: {{- include "labels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        deskripsi: {{ .Values.deployment.annotations.deskripsi }}
+      labels:
+        {{- include "labels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: ct-httpd
+          image: "{{ .Values.deployment.image.name }}:{{ .Values.deployment.image.tag }}"

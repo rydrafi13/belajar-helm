@@ -1,0 +1,23 @@
+# Default values for apps-01.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deployment:
+  replicaCount: 1
+  name: apps-nginx
+  labels:
+    name: apps-nginx
+  image:
+    app nginx:
+    version: latest
+  annotations:
+    deskripsi: "Belajar Helm basic"
+
+service:
+  name: svc-nginx
+  labels:
+    name: apps-nginx
+  type: NodePort
+  port: 80
+  targetPort: 80
+  nodePort: 32000

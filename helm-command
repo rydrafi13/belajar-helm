@@ -1,0 +1,19 @@
+# Create
+$ helm create name
+
+# Run
+$ helm install name .
+$ heml install name . -f custom-values.yml
+
+# List
+$ helm list
+
+# Remove
+$ helm uninstall name
+
+# Debug
+
+$ helm lint
+$ helm template .
+$ helm template . | kubectl apply -f -
+
